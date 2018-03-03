@@ -273,5 +273,80 @@ test2 <- function(start = 0){
 }
 test2(start = 0)
 
+##########
+#sum square, square sums
+##########
+
+sum_sq <- c()
+sq_sum <- c()
+for(i in 1:100){
+  sum_sq <- c(sum_sq,i^2)
+  sq_sum <- c(sq_sum, i)
+}
+
+sum(sq_sum)^2 - sum(sum_sq)
+########
+
+######
+#Goldbach conjecture
+#####
+test <- function(start = 0){
+  browser()
+  c = 8
+  while(T){
+for(b in 1:c){
+  for(a in 1:b){
+    if(c == (b + 2*(a^2))){
+      print(c)
+    }
+  }
+}
+  c <- c + 1
+}
+}
+test(start = 0)
 
 
+prime_vec <- c()
+for(i in 1:6000){
+  if(i == 2){
+    prime_vec <- c(prime_vec,i)
+  } else if(any(i %% 2:(i-1) == 0)){
+    next
+  } else {
+    prime_vec <- c(prime_vec,i)
+  }
+}
+
+odd_comp <- c()
+for(i in 5000:6000){
+  #check odd
+  if(i %% 2 != 0){
+    #check composite
+    if(any(i %% 2:sqrt(i) == 0)){
+      odd_comp <- c(odd_comp,i)
+    }
+  }
+}
+
+
+test <- function(start = 0){
+  # browser()
+  nums <- c()
+for(i in odd_comp){
+  for(j in prime_vec){
+    for(k in 1:floor(sqrt(tail(odd_comp, n = 1)))){
+    if(i == (j + 2*(k^2))){
+      nums <- c(nums,i)
+    }
+      }
+    }
+}
+  return(unique(nums))
+}
+ans <- test(start = 0)
+odd_comp
+
+cbind(ans,odd_comp)
+#answer is 5777
+#man this was some ugly code.
